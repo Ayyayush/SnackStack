@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import RestaurantCard from './RestaurantCard';
 import Shimmer from './Shimmer';
+import resList from '../../utils/mockData';
+import { API_ERROR_MESSAGE } from '../../utils/constants';
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -25,20 +27,14 @@ const Body = () => {
 
   const fetchData = async () => {
     try {
-
-
-
-      const data = await fetch(
-        'https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING'
-      );
-      if (!data.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const json = await data.json();
-      setListOfRestaurants(json?.data?.cards[2]?.data?.data?.cards || []);
-      setFilteredRestaurant(json?.data?.cards[2]?.data?.data?.cards || []);
+      // Simulate API delay for better UX
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Use mock data instead of external API to avoid CORS issues
+      setListOfRestaurants(resList);
+      setFilteredRestaurant(resList);
     } catch (err) {
-      setError("Failed to fetch restaurants. This may be due to CORS restrictions or network issues.");
+      setError("Failed to load restaurants.");
       setListOfRestaurants([]);
       setFilteredRestaurant([]);
     }
@@ -122,6 +118,13 @@ async function getRestaurants() {
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (    <div className="body">
+      {/* Demo Data Notice */}
+      <div className="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded mx-4 mt-4 mb-2">
+        <p className="text-sm">
+          📍 <strong>Demo Mode:</strong> {API_ERROR_MESSAGE}
+        </p>
+      </div>
+      
       <div className="filter">
         <div className="search">
           <input

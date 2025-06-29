@@ -1,4 +1,4 @@
-import { CDN_URL } from "../../utils/constants";
+import { IMG_URL, FALLBACK_IMG } from "../../utils/constants";
 import { FiClock } from 'react-icons/fi';
 import { AiOutlineStar } from 'react-icons/ai';
 
@@ -14,13 +14,18 @@ const RestaurantCard = (props) => {
     deliveryTime,
   } = resData?.data;
 
+  const handleImageError = (e) => {
+    e.target.src = FALLBACK_IMG;
+  };
+
   return (
     <div className="m-4 p-4 w-[250px] bg-gray-100 rounded-lg hover:bg-gray-200 transition-all">
       <div>
         <img
           className="w-[250px] h-[150px] rounded-lg"
-          src={CDN_URL + cloudinaryImageId}
+          src={IMG_URL + cloudinaryImageId}
           alt={name}
+          onError={handleImageError}
         />
       </div>
 
