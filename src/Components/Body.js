@@ -3,6 +3,7 @@ import RestaurantCard from './RestaurantCard';
 import Shimmer from './Shimmer';
 import resList from '../../utils/mockData';
 import { API_ERROR_MESSAGE } from '../../utils/constants';
+import { Link } from 'react-router-dom';
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -158,7 +159,13 @@ async function getRestaurants() {
       </div>
       <div className="res-container">
         {filteredRestaurant.map((restaurant) => (
-          <RestaurantCard key={restaurant.data.id} resData={restaurant} />
+          <Link 
+            key={restaurant.data.id} 
+            to={`/restaurants/${restaurant.data.id}`}
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
+            <RestaurantCard resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>

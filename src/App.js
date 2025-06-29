@@ -91,7 +91,9 @@ const appRouter = createBrowserRouter([
     ],
     errorElement: <Error />,
   },
-]);
+], {
+  basename: process.env.NODE_ENV === 'production' ? '/SnackStack' : '/'
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
