@@ -1,0 +1,36 @@
+{
+    "scripts": {
+        "start": "parcel index.html",
+        "build": "parcel build index.html --dist-dir docs --public-url ./",
+        "build-css": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch",
+        "deploy": "npm run build && git add docs && git commit -m 'Deploy to GitHub Pages' && git push",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:coverage": "jest --coverage"
+    },
+    "dependencies": {
+        "@reduxjs/toolkit": "^2.8.2",
+        "@tailwindcss/postcss": "^4.1.10",
+        "autoprefixer": "^10.4.21",
+        "react": "^19.1.0",
+        "react-dom": "^19.1.0",
+        "react-icons": "^5.5.0",
+        "react-redux": "^9.2.0",
+        "react-router": "^6.30.1",
+        "react-router-dom": "^6.30.1",
+        "styled-components": "^6.1.19",
+        "tailwindcss": "^4.1.10"
+    },
+    "devDependencies": {
+        "@babel/preset-env": "^7.27.2",
+        "@babel/preset-react": "^7.27.1",
+        "@testing-library/jest-dom": "^6.6.3",
+        "@testing-library/react": "^16.3.0",
+        "@testing-library/user-event": "^14.6.1",
+        "babel-jest": "^30.0.2",
+        "identity-obj-proxy": "^3.0.0",
+        "jest": "^30.0.3",
+        "jest-environment-jsdom": "^30.0.2",
+        "parcel": "^2.15.2"
+    }
+}
